@@ -1,6 +1,7 @@
 ## Как запустить контейнер с Postgres в Docker
 
 docker run --name=todo-db -e POSTGRES_PASSWORD='qwerty' -p 5436:5432 -d --rm postgres 
+docker run --name=todo-db -e POSTGRES_PASSWORD='qwerty' -p 5432:5432 -d --rm postgres
 
 
 ## Миграция Postgres
@@ -31,9 +32,28 @@ psql -U postgres
 \d
 
 
+#### Вариант 2: (очень быстрый) Как попасть к базе данных внутрь докера
+docker exec -it todo-db psql -U postgres -d postgres
+
+
 ### Что делать, если накосячил с миграциями
 
 // Внутри psql
 update schema_migrations set version='000001', dirty=false;
 
 select * from schema_migrations;
+
+
+## Установка Viper
+go get -u github.com/spf13/viper
+
+## Установка SQL X
+go get -u github.com/jmoiron/sqlx
+
+
+## Что бы завелась реализация драйвера для Postgres
+go mod download github.com/lib/pq
+
+
+# Запуск get запроса (в хендлере которого лежит tele_noti("..."))
+http://localhost:8008/api/lists
