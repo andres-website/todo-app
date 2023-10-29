@@ -50,6 +50,9 @@ go get -u github.com/spf13/viper
 ## Установка SQL X
 go get -u github.com/jmoiron/sqlx
 
+## Установка go dot env
+go get -u github.com/joho/godotenv
+
 
 ## Что бы завелась реализация драйвера для Postgres
 go mod download github.com/lib/pq

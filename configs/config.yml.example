@@ -1,0 +1,9 @@
+port: "8008"
+token_for_telegram_bot: "yourtoken"
+db:
+  username: "postgres"
+  password: "qwerty"
+  host: "localhost"
+  port: "5436"
+  dbname: "postgres"
+  sslmode: "disable"
