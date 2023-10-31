@@ -53,6 +53,9 @@ go get -u github.com/jmoiron/sqlx
 ## Установка go dot env
 go get -u github.com/joho/godotenv
 
+## Установка logrus
+go get -u github.com/sirupsen/logrus
+
 
 ## Что бы завелась реализация драйвера для Postgres
 go mod download github.com/lib/pq
@@ -60,3 +63,5 @@ go mod download github.com/lib/pq
 
 # Запуск get запроса (в хендлере которого лежит tele_noti("..."))
 http://localhost:8008/api/lists
+
+https://www.youtube.com/watch?v=QTFoGgLqTYA
