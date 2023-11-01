@@ -14,11 +14,12 @@ type AuthService struct {
 	repo repository.Autorization
 }
 
-func NewAuthService(repo repository.Repository) *AuthService {
+func NewAuthService(repo repository.Autorization) *AuthService {
 
 	return &AuthService{repo: repo}
 }
 
+// todo - означает что package todo (в файле pkg/user.go)
 func (s *AuthService) CreateUser(user todo.User) (int, error) {
 	user.Password = generatePasswordHash(user.Password)
 	return s.repo.CreateUser(user)

@@ -30,10 +30,10 @@ func (h *Handler) deleteList(c *gin.Context) {
 
 }
 
-func sendTelegramMessage(text string) error {
+func sendTelegramMessage(text string) {
 	// token_for_telegram_bot := viper.GetString("token_for_telegram_bot")
 	token_for_telegram_bot := os.Getenv("TOKEN_TELEGRAM_FOR_BOT")
 	url := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage?chat_id=91005356&text=%s&parse_mode=Markdown", token_for_telegram_bot, text)
-	_, err := http.Get(url)
-	return err
+	http.Get(url)
+	// return err
 }
