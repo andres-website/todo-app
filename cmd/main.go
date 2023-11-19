@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	todo "github.com/andres-website/todo-app/pkg"
@@ -42,7 +43,18 @@ func main() {
 		logrus.Fatalf("failed initializing db: %s ", err.Error())
 	}
 
+	err2 := db.Ping()
+
+	if err2 != nil {
+		fmt.Println("Ping не проходит main")
+		return
+	} else {
+
+		fmt.Println("Ping проходит main")
+	}
+
 	repos := repository.NewRepository(db)
+
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 

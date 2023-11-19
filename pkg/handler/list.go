@@ -9,7 +9,11 @@ import (
 )
 
 func (h *Handler) createList(c *gin.Context) {
-
+	fmt.Println("createList()")
+	id, _ := c.Get(userCtx)
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"id": id,
+	})
 }
 
 func (h *Handler) getAllList(c *gin.Context) {
