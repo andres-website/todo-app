@@ -1,3 +1,73 @@
+## Аля make
+
+docker run --name=todo-db -e POSTGRES_PASSWORD='qwerty' -p 5436:5432 -d --rm postgres
+
+migrate -path ./schema -database 'postgres://postgres:qwerty@localhost:5436/postgres?sslmode=disable' up
+
+go run .\cmd\main.go
+
+
+## Аля Тесты мануальные
+
+
+1. Зарегестрировать пользователя (sign-up)
+POST localhost:8008/auth/sign-up
+{
+    "name": "Andres",
+    "username": "firstAndres",
+    "password": "qwerty"
+}
+// assert: возвращает id пользователя
+
+
+2. Получить JWT токен (авторизоваться) (sign-in)
+POST localhost:8008/auth/sign-in
+{
+    "username": "firstAndres",
+    "password": "qwerty"
+}
+// assert: возвращает token пользователя
+
+
+3. Попытаться доступиться до списков тудушек (c Bearer authorization) 
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNTIzNTcsImlhdCI6MTcwMjEwOTE1NywidXNlcl9pZCI6MX0.5U7Y3x0cfqfFFeNIuF-VFrZypbmNnEtnPP2WaoP2BlA
+GET http://localhost:8008/api/lists
+bearer <token>
+assert: возвращает  в поле data данные или null - если данных нет
+
+
+4. Создаёт список тудушек
+POST http://localhost:8008/api/lists
+{
+    "title": "Список важных дел",
+    "description": "Срочно нужно сделать"
+}
+assert: возвращает  id созданного списка
+
+
+5. Возвращает список тудушек по id списка
+GET http://localhost:8008/api/lists/1
+assert: возвращает структуру списка (id, title, description)
+
+
+6. Редактирует список тудушек по id списка
+PUT http://localhost:8008/api/lists/1
+{
+    "title": "Список 4",
+    "description": "Описание Список 4"
+}
+assert: возвращает status ok
+
+
+7. Создаёт Тудушку по id списка (и id текущего пользователя из контекста, по JWT токену)
+POST https://youtu.be/zpMHy4UVDro?si=kuud2a_9HRf9THZ5&t=250
+{
+    "title": "Арбуз"
+}
+assert: возвращает id тудушки
+
+
+
 ## Как запустить контейнер с Postgres в Docker
 
 docker run --name=todo-db -e POSTGRES_PASSWORD='qwerty' -p 5436:5432 -d --rm postgres 
@@ -103,12 +173,10 @@ http://localhost:8008/auth/sign-up
 ### Ошибка: error: "socket hang up" в Postman
 
 Причина крылась в файле pkg/repository/postgres.go
-Функция конструктор: NewPostgresDB (...)
-Должна возвращать db и err // (*sqlx.DB, error)
-А в действительности возвращала nil и err // return nil, err
+Функция конструктор: NewPostgresDB (...)дщ                                                                                                                                                                                                                                                                                                                                        
 
 В итоге правильно так: return db, err
 
 
 ## Next lavel
-https://www.youtube.com/watch?v=QEbboflYUGk&list=PLbTTxxr-hMmyFAvyn7DeOgNRN8BQdjFm8&index=8
+https://youtu.be/zpMHy4UVDro?si=kuud2a_9HRf9THZ5&t=250
