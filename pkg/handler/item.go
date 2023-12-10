@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -59,10 +60,14 @@ func (h *Handler) getAllItem(c *gin.Context) {
 		newErrorResponse(c, http.StatusBadRequest, "invalid list id param")
 		return
 	}
+
+	fmt.Println("list id:")
+	fmt.Println(listId)
+
 	items, err := h.services.TodoItem.GetAll(userId, listId)
 	if err != nil {
 
-		newErrorResponse(c, http.StatusInternalServerError, "invalid list id param")
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
 

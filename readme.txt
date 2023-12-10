@@ -9,7 +9,6 @@ go run .\cmd\main.go
 
 ## Аля Тесты мануальные
 
-
 1. Зарегестрировать пользователя (sign-up)
 POST localhost:8008/auth/sign-up
 {
@@ -65,6 +64,11 @@ POST https://youtu.be/zpMHy4UVDro?si=kuud2a_9HRf9THZ5&t=250
     "title": "Арбуз"
 }
 assert: возвращает id тудушки
+
+
+8. Возрвращает все тудушки по id списка (и id текущего пользователя из контекста, по JWT токену)
+GET http://localhost:8008/api/lists/1/items
+assert: возвращает все тудушки из списка
 
 
 
