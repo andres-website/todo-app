@@ -59,7 +59,7 @@ assert: возвращает status ok
 
 
 7. Создаёт Тудушку по id списка (и id текущего пользователя из контекста, по JWT токену)
-POST https://youtu.be/zpMHy4UVDro?si=kuud2a_9HRf9THZ5&t=250
+POST http://localhost:8008/api/lists/1/items
 {
     "title": "Арбуз"
 }
