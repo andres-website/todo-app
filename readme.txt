@@ -183,4 +183,4 @@ http://localhost:8008/auth/sign-up
 
 
 ## Next lavel
-https://youtu.be/zpMHy4UVDro?si=kuud2a_9HRf9THZ5&t=250
+https://youtu.be/zpMHy4UVDro?si=c13-rYzoh4Q7EbVI&t=559
